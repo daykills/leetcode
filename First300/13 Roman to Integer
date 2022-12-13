@@ -1,24 +1,19 @@
 class Solution:
-    def intToRoman(self, num: int) -> str:
-        maps = {1000:'M',
-                900:'CM',
-                500:'D',
-                400:'CD',
-                100:'C',
-                90:'XC',
-                50:'L',
-                40:'XL',
-                10:'X',
-                9:'IX',
-                5:'V',
-                4:'IV',
-                1:'I'
-                }
-        res = ''
-        for number,roman in maps.items():
-            res += num // number * roman
-            num = num % number
-        return res
+    def romanToInt(self, s: str) -> int:
+        dic = {
+            'M': 1000,
+            'D': 500,
+            'C': 100,
+            'L': 50,
+            'X': 10,
+            'V': 5,
+            'I': 1
+        }
 
-时间复杂度：O(n)，其中n是字符串s的长度。
-空间复杂度：O(1)
+        res = 0
+        for i in range(len(s) - 1):
+            if dic[s[i]] >= dic[s[i+1]]:
+                res += dic[s[i]] 
+            else:
+                res -= dic[s[i]]
+        return res + dic[s[-1]]
