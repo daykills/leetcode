@@ -1,9 +1,0 @@
-#brute force
-class Solution:
-    def mySqrt(self, x: int) -> int:
-        if x == 0: return 0
-        res = 1
-        
-        while res * res <= x:
-            res += 1
-        return res - 1
