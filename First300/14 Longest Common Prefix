@@ -1,0 +1,12 @@
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        longest_prefix = min(strs, key = len)
+        
+        for index, charactor in enumerate(longest_prefix):
+            for word in strs:
+                if word[index] != charactor:
+                    return longest_prefix[:index]
+        return longest_prefix
+
+时间复杂度：O(mn)O(mn)，其中 mm 是字符串数组中的字符串的平均长度，nn 是字符串的数量。最坏情况下，字符串数组中的每个字符串的每个字符都会被比较一次。
+空间复杂度：O(1)O(1)。使用的额外空间复杂度为常数。
