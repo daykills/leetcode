@@ -1,0 +1,15 @@
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        l = 0
+        r = len(height) - 1
+        area = 0
+
+        while l < r:
+            area = max(area, (r - l) * min(height[l], height[r]))
+            if height[l] < height[r]:
+                l += 1
+            else:
+                r -= 1
+        return area
+时间复杂度O(N)​:双指针遍历一次底边宽度N
+空间复杂度O(1):变量使用常数额外空间
