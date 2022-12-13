@@ -1,0 +1,15 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        res = 0
+        dic = set()
+        l = 0
+        
+        for r, num in enumerate(s):
+            while num in dic:
+                dic.remove(s[l])
+                l += 1
+            dic.add(num)
+            res = max(res, r - l + 1)
+        return res
+时间复杂度： O(n)
+空间复杂度： O(n)
