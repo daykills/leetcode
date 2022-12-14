@@ -1,0 +1,12 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        #去除开始和结尾的所有空字符
+        s = s.strip()
+        if not s:return 0
+
+        #使用正则表达式找出"+", "-", 数字 开始，到第一个非数字字符处停止的数字
+        res = re.findall(r'^[+-]?\d+', s)
+        if not res: return 0
+
+        res = int(res[0])
+        return max(min(res, 2**31 - 1), -2**31)
