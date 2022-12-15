@@ -1,0 +1,23 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        max_height = max(height)
+        i = height.index(max_height)
+        lo = 0
+        hi = len(height) - 1
+        water = 0
+
+        l_max = 0
+        while lo < i:
+            l_max = max(l_max, height[lo])
+            water += l_max - height[lo]
+            lo += 1
+        
+        r_max = 0
+        while i < hi:
+            r_max = max(r_max, height[hi])
+            water += r_max - height[hi]
+            hi -= 1
+        return water
+
+时间复杂度： O(n)
+空间复杂度： O(1)
