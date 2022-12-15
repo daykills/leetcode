@@ -1,0 +1,17 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        lo = 0
+        hi = len(nums)
+
+        while lo < hi:
+            mid = (hi - lo) // 2 + lo
+            mid_val = nums[mid]
+
+            if target <= mid_val:
+                hi = mid
+            else:
+                lo = mid + 1
+        return lo
+        
+时间复杂度： O(logn)
+空间复杂度： O(1)
