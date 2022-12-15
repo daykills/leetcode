@@ -1,0 +1,19 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        parentheses_dict = {"(":")",
+                            "{": "}",
+                           "[":"]"}
+        
+        stack = []
+        for parenthese in s:
+            if parenthese in parentheses_dict:
+                stack.append(parenthese)
+            else:
+                if stack and parentheses_dict[stack[-1]] == parenthese:
+                    stack.pop()
+                else:
+                    return False
+        return len(stack) == 0
+
+时间复杂度： O(n)
+空间复杂度： O(n)
