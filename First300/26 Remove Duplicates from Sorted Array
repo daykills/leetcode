@@ -1,0 +1,13 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        l = 0
+
+        for r, num in enumerate(nums):
+            if nums[l] != nums[r]:
+                l += 1
+                nums[r], nums[l] = nums[l], nums[r]
+        return len(nums[:l + 1])
+
+
+时间复杂度： O(n)
+空间复杂度： O(1)
