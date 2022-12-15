@@ -1,0 +1,26 @@
+class Solution:
+    def countAndSay(self, n: int) -> str:
+
+        for i in range(n):
+            if i == 0:
+                prev = self.say(str(i))
+            else:
+                res = self.say(prev)
+                prev = res
+        return prev
+        
+        
+    def say(self, s):
+        if s == '0': return '1'
+        stack = [['#', 0]]
+
+        for i, c in enumerate(s):
+            if c == stack[-1][0]:
+                stack[-1][1] += 1
+            else:
+                stack.append([c, 1])
+        return ''.join([str(y) + x for x, y in stack if y > 0])
+
+
+时间复杂度：O(N×M)，其中 NN 为给定的正整数，MM 为生成的字符串中的最大长度。
+空间复杂度：O(M)。其中 MM 为生成的字符串中的最大长度。
