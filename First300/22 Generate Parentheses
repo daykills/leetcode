@@ -1,0 +1,19 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        leftN = 0
+        rightN = 0
+        res = []
+        
+        def dfs(leftN, rightN, path):
+            if leftN == rightN == n:
+                res.append(''.join(path))
+                return 
+            
+            if leftN < n:
+                dfs(leftN + 1, rightN, path + ['('])
+                
+            if rightN < leftN:
+                dfs(leftN, rightN + 1, path + [')'])    
+        
+        dfs(0, 0, [])
+        return res
