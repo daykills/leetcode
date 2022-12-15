@@ -1,0 +1,15 @@
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        nums_set = set(nums)
+        smallest = 1
+
+        for num in nums:
+            if num == smallest:
+                next_num = num
+                while next_num in nums_set:
+                    next_num += 1
+                smallest = next_num
+
+        return smallest
+时间复杂度： O(n)
+空间复杂度： O(n)
