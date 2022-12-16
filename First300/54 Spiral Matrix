@@ -1,0 +1,32 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        m, n = len(matrix), len(matrix[0])
+        l_edge = 0
+        r_edge = n - 1
+        u_edge = 0
+        d_edge = m - 1
+        result = []
+
+
+        while True:
+            if l_edge <= r_edge and len(result) < m * n:
+                for j in range(l_edge, r_edge + 1):
+                    result.append(matrix[u_edge][j])
+                u_edge += 1
+
+            if u_edge <= d_edge and len(result) < m * n:
+                for i in range(u_edge, d_edge + 1):
+                    result.append(matrix[i][r_edge])
+                r_edge -= 1
+
+            if l_edge <= r_edge and len(result) < m * n:
+                for j in range(r_edge, l_edge - 1, -1):
+                    result.append(matrix[d_edge][j])
+                d_edge -= 1
+
+            if u_edge <= d_edge and len(result) < m * n:
+                for i in range(d_edge, u_edge -1, -1):
+                    result.append(matrix[i][l_edge])
+                l_edge += 1
+            else:
+                return result
