@@ -1,3 +1,8 @@
+"""
+知识点： matrix
+思路： 先对角线反转，再每一行反转
+"""
+
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """
