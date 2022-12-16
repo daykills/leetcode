@@ -1,1 +1,33 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        res_lo = self.lower_bound(nums, target) 
+        res_hi = self.higher_bound(nums, target)
 
+        final_lo = res_lo if res_lo < len(nums) and res_lo >= 0 and nums[res_lo] == target else -1
+        final_hi = res_hi if res_hi < len(nums) and res_hi >= 0 and nums[res_hi] == target else -1
+        return [final_lo, final_hi]
+
+    def lower_bound(self, nums, target):
+        lo = 0
+        hi = len(nums)
+        while lo < hi:
+            mid = (hi - lo) // 2 + lo
+            if target <= nums[mid]:
+                hi = mid
+            else:
+                lo = mid + 1
+        return lo
+
+    def higher_bound(self, nums, target):
+        lo = 0
+        hi = len(nums)
+        while lo < hi:
+            mid = (hi - lo) // 2 + lo
+            if target < nums[mid]:
+                hi = mid 
+            else:
+                lo = mid + 1
+        return lo - 1
+
+时间复杂度： O(logn)
+空间复杂度： O(1)
