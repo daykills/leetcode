@@ -1,0 +1,21 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        matrix_rows = [set() for _ in range(9)]
+        matrix_cols = [set() for _ in range(9)]
+        matrix_squs = [set() for _ in range(9)]
+
+        for i in range(9):
+            for j in range(9):
+                num = board[i][j]
+                if num == '.':
+                    continue
+                pos = (i // 3) * 3 + j // 3
+                if num not in matrix_rows[i] and num not in matrix_cols[j] and num not in matrix_squs[pos]:
+                    matrix_rows[i].add(num)
+                    matrix_cols[j].add(num)
+                    matrix_squs[pos].add(num)
+                else:
+                    return False
+        return True
+时间复杂度： O(n^2), n is the length of the array
+空间复杂度： O(n^2)
