@@ -1,0 +1,13 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        def cal(x, y):
+            if y == 0: return 1
+            if x == 0: return 0
+            res = cal(x, y // 2) 
+            return res * res * x if y % 2 else res * res
+        
+        res = cal(x, abs(n))
+        return res if n >= 0 else 1/res
+
+时间复杂度： O(logn)
+空间复杂度： O(logn)
