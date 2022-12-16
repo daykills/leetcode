@@ -1,0 +1,22 @@
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        n = len(matrix)
+
+        # rotate 对角线
+        for i in range(n):
+            for j in range(i, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        # rotate each row
+        for row in matrix:
+            lo = 0
+            hi = n-1
+            while lo < hi:
+                row[lo], row[hi] = row[hi], row[lo]
+                lo += 1
+                hi -= 1
+
+时间复杂度： O(n**2)
+空间复杂度： O(1)
