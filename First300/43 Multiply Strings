@@ -1,0 +1,20 @@
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        res_length = (len(num1) + len(num2))  + 1
+        res = [0] * res_length
+        start_pos = res_length - 1
+        
+        for i in range(len(num1) -1, -1, -1):
+            temp_pos = start_pos
+            for j in range(len(num2) -1, -1, -1):
+                res[temp_pos] += int(num1[i]) * int(num2[j])
+                res[temp_pos - 1] += res[temp_pos] // 10
+                res[temp_pos] %= 10
+                temp_pos -= 1
+            start_pos -= 1
+            
+        res = ''.join(map(str, res)).lstrip("0") 
+        return res if res else "0"
+        
+时间复杂度： O(m X n)
+空间复杂度： O(1)
