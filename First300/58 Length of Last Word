@@ -1,0 +1,7 @@
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        s_list = s.split()
+        return len(s_list[-1])
+
+时间复杂度： O(1)
+空间复杂度： O(n)
