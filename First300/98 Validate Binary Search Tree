@@ -1,0 +1,41 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+      """
+      Approach 1: by defination of BST, check each value lies in the 
+                  range, determine if each node is valid or not
+      Time complexity: O(N)
+      Space complexity: O(N) 
+      """
+        
+      def validate(root, leftVal, rightVal):
+          if not root:
+              return True
+          elif not (leftVal < root.val < rightVal):
+              return False
+          else:
+              return validate(root.left, leftVal, root.val) and validate(root.right, root.val, rightVal)
+    
+      return validate(root, float('-inf'), float('inf'))
+
+      """
+      Approach2: inorder traversal of BST is sorted
+      Time complexity: O(N)
+      Space complexity: O(N) 
+      """
+
+      def inorder(root):
+        if not root: return True
+        if not inorder(root.left): return False
+        if prev != None and root.val <= prev: 
+          return False
+        self.prev = root.val
+        return inorder(root.right)
+
+      self.prev = None
+      return inorder(root)
