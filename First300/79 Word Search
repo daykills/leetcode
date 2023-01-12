@@ -1,0 +1,20 @@
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(i, j, length):
+            if 0 <= i < m and 0 <= j < n and board[i][j] == word[length]:
+                if length == len(word) - 1:
+                    return True
+                temp = word[length]
+                board[i][j] = '#'
+                res = dfs(i + 1, j, length + 1) or dfs(i, j + 1, length + 1) or dfs(i - 1, j, length + 1) or dfs(i, j - 1, length + 1)
+                board[i][j] = temp
+                return res
+
+        m, n = len(board), len(board[0])
+        for i in range(m):
+            for j in range(n):
+                if dfs(i, j, 0):
+                    return True
+        return False
+Time Complexity: O(N⋅3^L) where N is the number of cells in the board and L is the length of the word to be matched.
+Space Complexity: O(L) where L is the length of the word to be matched.
