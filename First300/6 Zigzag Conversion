@@ -1,0 +1,19 @@
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1 or len(s) < numRows:
+            return s
+        
+        index, step = 0, 1
+        res = [''] * numRows
+        
+        for each in s:
+            res[index] += each
+            if index == 0:
+                step = 1
+            if index == numRows - 1:
+                step = -1
+            index += step
+        return ''.join(res)
+
+时间复杂度： O(n)
+空间复杂度： O(1)
