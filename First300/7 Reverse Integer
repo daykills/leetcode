@@ -1,0 +1,17 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        def reverse_pos(x):
+            res = 0
+            while x != 0:
+                temp = x % 10
+                if res > 214748364:
+                    return 0
+                res = res * 10 + temp
+                x //= 10
+            return res
+
+        res = reverse_pos(abs(x))
+        return res if x >= 0 else -res 
+
+时间复杂度： O(log10(x))
+空间复杂度： O(1)
