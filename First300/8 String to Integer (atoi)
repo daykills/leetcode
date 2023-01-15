@@ -10,3 +10,5 @@ class Solution:
 
         res = int(res[0])
         return max(min(res, 2**31 - 1), -2**31)
+时间复杂度： O(n)
+空间复杂度： O(1)
