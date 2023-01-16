@@ -1,0 +1,30 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        # use a heap to save k nodes 
+        heap = []
+        dummy_head = pre = ListNode()
+
+        # save the value of head of k linked list to heap
+        for i, head in enumerate(lists):
+            if head:
+                heapq.heappush(heap, (head.val, i))
+
+        # keep pop the smallest value from the heap
+        while heap:
+            val, i = heapq.heappop(heap)
+            new_node = ListNode(val)
+            pre.next = new_node
+            pre = pre.next
+
+            if lists[i].next:
+                heapq.heappush(heap, (lists[i].next.val, i))
+                lists[i] = lists[i].next
+        return dummy_head.next
+
+时间复杂度： O(nlogk) where k is the number of linked lists, n if the final linked lists
+空间复杂度： O(n + k), n is creating new linked lists, k is heap 
