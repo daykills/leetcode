@@ -1,0 +1,12 @@
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        l = 0
+
+        for r, num in enumerate(nums):
+            if num != val:
+                nums[l] = num
+                l += 1
+        return l
+        
+时间复杂度： O(n)
+空间复杂度： O(1)
