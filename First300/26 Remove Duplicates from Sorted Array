@@ -3,10 +3,10 @@ class Solution:
         l = 0
 
         for r, num in enumerate(nums):
-            if nums[l] != nums[r]:
+            if num != nums[l]:
                 l += 1
-                nums[r], nums[l] = nums[l], nums[r]
-        return len(nums[:l + 1])
+                nums[l] = num
+        return l + 1
 
 
 时间复杂度： O(n)
