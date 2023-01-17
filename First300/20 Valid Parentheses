@@ -1,19 +1,23 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        parentheses_dict = {"(":")",
-                            "{": "}",
-                           "[":"]"}
-        
+        dic = {
+            "(": ")", 
+            "[": "]",
+            "{": "}"
+        }
         stack = []
-        for parenthese in s:
-            if parenthese in parentheses_dict:
-                stack.append(parenthese)
-            else:
-                if stack and parentheses_dict[stack[-1]] == parenthese:
-                    stack.pop()
-                else:
-                    return False
-        return len(stack) == 0
+        
+        for i, c in enumerate(s):
+            if c in dic:
+                stack.append(c)
+                continue
+            if stack and dic[stack[-1]] == c:
+                stack.pop()
+                continue
+            # situition like "]"
+            return False
+        # situition like "["
+        return True if len(stack) == 0 else False
 
 时间复杂度： O(n)
 空间复杂度： O(n)
