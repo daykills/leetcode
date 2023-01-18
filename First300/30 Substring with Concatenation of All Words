@@ -1,0 +1,30 @@
+class Solution:
+    def findSubstring(self, s: str, words: List[str]) -> List[int]:
+        n = len(s)
+        k = len(words)
+        word_length = len(words[0])
+        words_dic = collections.Counter(words)
+
+        def check(i):
+            temp = copy.deepcopy(words_dic)
+            words_used = 0
+
+            for j in range(i, i + word_length * k, word_length):
+                sub = s[j: j + word_length]
+                if temp[sub] > 0:
+                    temp[sub] -= 1
+                    words_used += 1
+                else:
+                    break
+
+            return words_used ==  k
+
+        res = []
+        for i in range(n - word_length + 1):
+            if check(i):
+                res.append(i)
+
+        return res
+
+Time complexity: O(n * k * word_length)
+Space complexity: O(k)
